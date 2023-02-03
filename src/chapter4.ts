@@ -78,4 +78,25 @@ const PersonalName = z.object({
     lastName: z.string()
 })
 
+const Success = z.object({ type: z.literal("success"), value: z.any() })
+type Success<a> = z.infer<typeof Success>
+const Failure = z.object({ type: z.literal("failure"), value: z.any() })
+type Failure<e> = z.infer<typeof Failure>
+const Result = z.discriminatedUnion("type", [
+    Success,
+    Failure
+])
+type Result<a, e> = Success<a> | Failure<e>
+
+class CardTypeNotRecognized extends Error{}
+class PaymentRejected extends Error{}
+class PaymentProviderOffline extends Error{}
+const PaymentError = z.union([
+    z.instanceof(CardTypeNotRecognized),
+    z.instanceof(PaymentRejected),
+    z.instanceof(PaymentProviderOffline)
+])
+type PaymentError = z.infer<typeof PaymentError>
+type PayInvoiceWithResult = (unpaidInvoice: UnpaidInvoice, payment: Payment) =>
+    Result<PaidInvoice, PaymentError>
 

@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "chapter4": "ts-node src/chapter4.ts",
+    "chapter5": "ts-node src/chapter5.ts",
     "test": "jest"
   },
   "keywords": [],
