@@ -4,7 +4,7 @@ import { match } from 'ts-pattern'
 // 
 // Modeling Simple Values
 //
-const CustomerId = z.number().int().positive()
+const CustomerId = z.number().int().positive().brand<"CustomerId">()
 type CustomerId = z.infer<typeof CustomerId>
 
 const WidgetCode = z.string()
@@ -16,16 +16,16 @@ type UnitQuantity = z.infer<typeof UnitQuantity>
 const KilogramQuantity = z.number().positive()
 type KilogramQuantity = z.infer<typeof KilogramQuantity>
 
-const OrderId = z.number().int().positive()
+const OrderId = z.number().int().positive().brand<"OrderId">()
 type OrderId = z.infer<typeof OrderId>
 
 const customerId = CustomerId.parse(42)
 const orderId = OrderId.parse(42)
 
-// ここがF#と違いtrueになってしまう。
+// zodのbrandでタグ付けしておくと、型エラーにできる
 console.log(customerId === orderId)
 
-// 引数の取り違えも防げない
+// 引数の取り違えもエラーになる
 const processCustomerId = (id: CustomerId) => {}
 processCustomerId(orderId)
 
