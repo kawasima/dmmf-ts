@@ -49,6 +49,7 @@ const Order = z.object({
     orderLines: z.array(OrderLine),
     amountToBill: BillingAmount
 })
+type Order = z.infer<typeof Order>
 
 // Choice型のモデリング
 /*
@@ -124,3 +125,14 @@ type PricedOrder = z.infer<typeof PricedOrder>
 type CalculatePrices = (orderForm: OrderForm, productCatalog: ProductCatalog) =>
     PricedOrder
 
+
+// Aggregates
+
+/// We pass in three parameters:​
+/// * the top-level order​
+/// * the id of the order line we want to change​
+/// * the new price
+const changeOrderLinePrice = (order: Order, orderId: OrderId, newPrice: Price) => {
+    ​// 1. find the line to change using the orderLineId
+    
+}
