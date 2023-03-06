@@ -1,6 +1,5 @@
-import z from 'zod'
-import { match } from 'ts-pattern'
-
+import z from "zod"
+import { match } from "ts-pattern"
 
 // Working with typescript types
 const Person = z.object({
@@ -69,7 +68,7 @@ const PaidInvoice = z.object({
 })
 type PaidInvoice = z.infer<typeof PaidInvoice>
 
-type PayInvoice = (unpaidInvoice: UnpaidInvoice, payment: Payment) => PaidInvoic
+type PayInvoice = (unpaidInvoice: UnpaidInvoice, payment: Payment) => PaidInvoice
 
 // Modeling Optional Values, Errors, and Collections
 const PersonalName = z.object({

@@ -18,11 +18,13 @@ export const PersonalName = z.object({
     firstName: String50,
     lastName: String50,
 })
+export type PersonalName = z.infer<typeof PersonalName>
 
 export const CustomerInfo = z.object({
     name: PersonalName,
     emailAddress: EmailAddress,
 })
+export type CustomerInfo = z.infer<typeof CustomerInfo>
 
 // ==================================
 // Address-related
@@ -36,6 +38,7 @@ export const Address = z.object({
     city: String50,
     zipCode: ZipCode,
 })
+export type Address = z.infer<typeof Address>
 
 // ==================================
 // Product-related types

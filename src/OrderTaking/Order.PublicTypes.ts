@@ -1,3 +1,4 @@
+import { Either } from "fp-ts/lib/Either";
 import z from "zod";
 import { Address, CustomerInfo } from "./Common.CompoundTypes";
 import { BillingAmount, EmailAddress, OrderId, OrderLineId, OrderQuantity, Price, ProductCode } from "./Common.SimpleTypes"
@@ -13,9 +14,9 @@ export type UnvalidatedCustomerInfo = z.infer<typeof UnvalidatedCustomerInfo>
 
 export const UnvalidatedAddress = z.object({
     addressLine1: z.string(),
-    addressLine2: z.string(),
-    addressLine3: z.string(),
-    addressLine4: z.string(),
+    addressLine2: z.string().optional(),
+    addressLine3: z.string().optional(),
+    addressLine4: z.string().optional(),
     city: z.string(),
     zipCode: z.string(),
 })
@@ -112,6 +113,6 @@ export type PlaceOrderError = z.infer<typeof PlaceOrderError>
 // the workflow itself
 
 export type PlaceOrder = (unvalidatedOrder: UnvalidatedOrder) => 
-    AsyncResult<PlaceOrderEvent[], PlaceOrderError>
+    Either<PlaceOrderError, PlaceOrderEvent[]>
 
 

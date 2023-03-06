@@ -1,5 +1,4 @@
-import z from 'zod'
-import { match } from 'ts-pattern'
+import z from "zod"
 
 // 
 // Modeling Simple Values
@@ -125,7 +124,12 @@ type PricedOrder = z.infer<typeof PricedOrder>
 type CalculatePrices = (orderForm: OrderForm, productCatalog: ProductCatalog) =>
     PricedOrder
 
-
+const CalculatePricesInput = z.object({
+    orderForm: OrderForm,
+    productCatalog: ProductCatalog,
+})
+type CalculatePricesInput = z.infer<typeof CalculatePricesInput>
+type CalculatePrices = (input: CalculatePricesInput) => PricedOrder
 // Aggregates
 
 /// We pass in three parameters:​

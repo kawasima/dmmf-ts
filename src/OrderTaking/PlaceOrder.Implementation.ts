@@ -41,33 +41,33 @@ type PlaceOrderWithoutEffects =
 // ---------------------------
 
 // Product validation
-type CheckProductCodeExists =
+export type CheckProductCodeExists =
     (productCode: ProductCode) => boolean
 
-type CheckedAddress = UnvalidatedAddress
+export type CheckedAddress = UnvalidatedAddress
 
-type CheckAddressExists =
+export type CheckAddressExists =
     (unvalidatedAddress: UnvalidatedAddress) => CheckedAddress
 
 // ---------------------------
 // Validated Order
 // ---------------------------
 
-const ValidatedOrderLine =  z.object({
+export const ValidatedOrderLine =  z.object({
     orderLineId: OrderLineId,
     productCode: ProductCode,
     quantity: OrderQuantity,
 })
-type ValidatedOrderLine = z.infer<typeof ValidatedOrderLine>
+export type ValidatedOrderLine = z.infer<typeof ValidatedOrderLine>
 
-const ValidatedOrder = z.object({
+export const ValidatedOrder = z.object({
     orderId: OrderId,
     customerInfo: CustomerInfo,
     shippingAddress: Address,
     billingAddress: Address,
     lines: z.array(ValidatedOrderLine),
 })
-type ValidatedOrder = z.infer<typeof ValidatedOrder>
+export type ValidatedOrder = z.infer<typeof ValidatedOrder>
 
 type ValidateOrder = (
     checkProductCodeExists: CheckProductCodeExists,  // dependency
@@ -138,7 +138,7 @@ type CreateEvents = (
 // ValidateOrder step
 // ---------------------------
 
-const toCustomerInfo = (unvalidatedCustomerInfo: UnvalidatedCustomerInfo) => {
+const toCustomerInfo = (unvalidatedCustomerInfo: UnvalidatedCustomerInfo): CustomerInfo => {
     const firstName = String50.parse(unvalidatedCustomerInfo.firstName)
     const lastName = String50.parse(unvalidatedCustomerInfo.lastName)
     const emailAddress = EmailAddress.parse(unvalidatedCustomerInfo.emailAddress)

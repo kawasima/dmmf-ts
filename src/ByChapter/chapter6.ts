@@ -1,5 +1,5 @@
-import z from 'zod'
-import { match } from 'ts-pattern'
+import z from "zod"
+import { match } from "ts-pattern"
 
 //
 // The integrity of Simple Value

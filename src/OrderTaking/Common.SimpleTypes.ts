@@ -7,7 +7,7 @@ import z from "zod"
 // ===============================
 
 /// Constrained to be 50 chars or less, not null
-export const String50 = z.string().max(50)
+export const String50 = z.string().max(50).min(1)
 
 /// An email address
 export const EmailAddress = z.string().email()
