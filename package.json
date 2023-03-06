@@ -5,8 +5,8 @@
   "description": "Domain Modeling Made Functional in TypeScript",
   "main": "index.js",
   "scripts": {
-    "chapter4": "ts-node src/chapter4.ts",
-    "chapter5": "ts-node src/chapter5.ts",
+    "chapter4": "ts-node src/ByChapter/chapter4.ts",
+    "chapter5": "ts-node src/ByChapter/chapter5.ts",
     "test": "jest"
   },
   "keywords": [],
